@@ -13,10 +13,19 @@ Note that Elon's capital will be $33B.
 """
 
 ### all your code below ###
+# Check that I have virtual environment and stuff working
+print("program woke up")
 
+#create function definitions to calculate the interest
+def CalculateInterest(Start, Gainrate, TimeYear):
+    Result = Start * (( 1 + (Gainrate / 100)) ** TimeYear)
+    return Result
 
 # final answer for 10-year
-ten_year_final = None
+ten_year_final = CalculateInterest(33*(10**9), 3.96, 10)
+print("Ten year payoff is " + str(f"{ten_year_final:,}" + "USD"))
 
 # final answer for 20-year
-twenty_year_final = None
+twenty_year_final = CalculateInterest(33*(10**9), 4.32, 20)
+print("Twenty year payoff is " + str(f"{twenty_year_final:,}" + "USD"))
+
