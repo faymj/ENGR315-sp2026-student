@@ -29,3 +29,30 @@ num_evens = 0
 num_odds = 0
 
 ### YOUR CODE BEGINS HERE ###
+
+print(nums)
+
+def evencheck(nums):
+    if nums // 2 == 0:
+        return "Even!"
+    else:
+        return "Odd!"
+    
+for element in nums:
+    if nums // 2 == 0:
+        num_evens = ( num_evens + 1 )
+        continue
+    else:
+        nums_odds = ( nums_odds + 1 )
+        continue
+
+#for number in nums:
+#    if nums % 2 == 1:
+#    print(str(num_odds + 1))
+#        continue
+#    esif nums % 2 == 0:
+#    print(str(num_odds + 1))
+#        break
+
+
+

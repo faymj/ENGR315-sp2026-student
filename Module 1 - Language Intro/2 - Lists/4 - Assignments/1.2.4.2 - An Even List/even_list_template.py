@@ -20,9 +20,20 @@ print("Your list is: ", even_list)
 YOUR CODE BEGINS BELOW HERE. FILL IN THE MISSING OPERATIONS / CODE
 """
 
+#find out the "left" and the "right" sides of the middle of our list
+list_left_middle = ( ( len(even_list) // 2 ) -1)  
+list_right_middle = ( ( len(even_list) // 2 ) )  
 
-# this is the final result. Modify this line, and the empty lines above, to solve the assignment
-middle_average = None
+#placeholders to check the numbers are what I expect them to be
+#print(list_left_middle)
+#print(list_right_middle)
 
-# the average of middle elements is
-print("The average is: ", middle_average)
+#performing the average of the two middle values
+middle_average = (( even_list[list_left_middle] + even_list[list_right_middle] ) / 2 )
+
+#placeholders to check the numbers are what I expect them to be
+#print(even_list[list_left_middle])
+#print(even_list[list_right_middle])
+
+# reading that value of the middle two values
+print("The average of the middle values is: ", middle_average)

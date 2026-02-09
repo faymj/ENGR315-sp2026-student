@@ -1,0 +1,8 @@
+def evencheck(num):
+    if num % 2 == 0:
+        return True
+    else: 
+        return False
+    
+num = 2
+print(str(evencheck(num)))
