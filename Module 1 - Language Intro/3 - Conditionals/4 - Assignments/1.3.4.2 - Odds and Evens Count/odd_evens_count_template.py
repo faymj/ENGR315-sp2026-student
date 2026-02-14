@@ -32,19 +32,23 @@ num_odds = 0
 
 print(nums)
 
-def evencheck(nums):
-    if nums // 2 == 0:
-        return "Even!"
-    else:
-        return "Odd!"
-    
+#me messing around with functions because they're cool
+#def evencheck(nums):
+#    if nums // 2 == 0:
+#        return "Even!"
+#    else:
+#        return "Odd!"
+
+#using a loop with operators to acheive my ends    
 for element in nums:
-    if nums // 2 == 0:
+    if element %2 == 1:
+        num_odds = ( num_odds + 1 )
+        continue
+    else:
         num_evens = ( num_evens + 1 )
         continue
-    else:
-        nums_odds = ( nums_odds + 1 )
-        continue
+
+print("number of evens: " + str(num_evens) + ", and number of odds: " + str(num_odds))
 
 #for number in nums:
 #    if nums % 2 == 1:
@@ -52,7 +56,7 @@ for element in nums:
 #        continue
 #    esif nums % 2 == 0:
 #    print(str(num_odds + 1))
-#        break
+#       break
 
 
 

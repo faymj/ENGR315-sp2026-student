@@ -22,11 +22,6 @@ random_list_B = random.sample(range(100), random_length)
 
 # use the std() method from numpy to determine which list has the largest standard deviation
 
-if (std(random_list_B)) > (std(random_list_A)):
-
-
-else:
-
 ### YOUR CODE HERE
 
 # set this variable equal to the list with the largest standard deviation
@@ -49,8 +44,8 @@ else:
     longest_list_is = random_list_B
 
 #Diagonistic tools to assess manually that it is occuring correctly
-print(potato1)
-print(potato2)
+#print(potato1)
+#print(potato2)
 
 #Printing the value so one can see it.
 print("largest stdev list is: "+ str(longest_list_is))

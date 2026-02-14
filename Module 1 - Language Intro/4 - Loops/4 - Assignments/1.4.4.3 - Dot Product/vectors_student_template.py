@@ -28,6 +28,17 @@ Step 2: Iterate through the vector(s) and calculate the dot product
 dot_product = 0
 
 ### Your code here
+count = 1
+dot_sequence = 0
+
+#create code ambomination
+for count in range(0,max_length-1):
+    dot_sequence = (vector_a[count] * vector_b[count]) + dot_sequence
+    count = count+1
+
+ 
+
+
 
 """
 Step 3: Calculate the error of your dot_product compared with numpy's solution

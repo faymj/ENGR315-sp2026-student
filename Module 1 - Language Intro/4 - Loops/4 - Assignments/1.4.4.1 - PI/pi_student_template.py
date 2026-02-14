@@ -14,8 +14,8 @@ Step 1: Declare and initialize all the values for the Gauss-Legendre algorithm
 """
 
 # modify these lines to correct set the variable values
-a = None
-b = None
+a = 1
+b = 1/(2^0.5)
 t = None
 p = None
 
