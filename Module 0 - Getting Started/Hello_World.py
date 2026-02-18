@@ -9,13 +9,7 @@ print("Hello, World!")
 # Then Look down to the bottom to see what happens!
 
 # After your first run, try it out for yourself!
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 print("hey")
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 # YOUR CODE HERE #
 print("Testing print writing a second time for good measure")
 print("yup it seems to work")
