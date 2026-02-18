@@ -44,8 +44,13 @@ else:
     longest_list_is = random_list_B
 
 #Diagonistic tools to assess manually that it is occuring correctly
+<<<<<<< Updated upstream
 #print(potato1)
 #print(potato2)
+=======
+print(potato1)
+print(potato2)
+>>>>>>> Stashed changes
 
 #Printing the value so one can see it.
 print("largest stdev list is: "+ str(longest_list_is))

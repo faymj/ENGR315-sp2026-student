@@ -9,19 +9,29 @@ Prompt: On October 27th, 2022, Elon Musk purchased Twitter for $44B in total, wi
 that time, it appears this investment has not worked out. If Elon has instead bought $44B of US Treasury Bonds, how much
 would his investment be worth in 10-year and 20-year bonds? Assume the 10-year bonds pay 3.96%,
 the 20-year bonds pay 4.32%, with each compounding annually. 1.01186675145
+<<<<<<< Updated upstream
 Note that Elon's capital will be $33B.
+=======
+>>>>>>> Stashed changes
 """
 
 ### all your code below ###
 # Check that I have virtual environment and stuff working
 print("program woke up")
+<<<<<<< Updated upstream
 
 
 #create function definitions to calculate the interest
 def CalculateInterest(Start, Gainrate, TimeYear):
     Result = Start * (( 1 + (Gainrate / 100)) ** TimeYear)
     return Result
+=======
+>>>>>>> Stashed changes
 
+#create function definitions to calculate the interest
+def CalculateInterest(Start, Gainrate, TimeYear):
+    Result = Start * (( 1 + (Gainrate / 100)) ** TimeYear)
+    return Result
 
 # final answer for 10-year
 ten_year_final = CalculateInterest(33*(10**9), 3.96, 10)
@@ -31,4 +41,7 @@ print("Ten year payoff is " + str(f"{ten_year_final:,}" + "USD"))
 twenty_year_final = CalculateInterest(33*(10**9), 4.32, 20)
 print("Twenty year payoff is " + str(f"{twenty_year_final:,}" + "USD"))
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
