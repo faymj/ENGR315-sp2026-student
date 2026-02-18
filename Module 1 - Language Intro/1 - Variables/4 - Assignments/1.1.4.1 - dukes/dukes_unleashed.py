@@ -31,7 +31,11 @@ out_state_gift = (full_time_undergrad_cost_outstate * ( 1.0 / return_percent ))
 print("for annual University costs, the typical costs are as follows:")
 print("Instate: " + str(f"{in_state_gift:,}") + " USD")
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 print("Outstate: " + str(f"{out_state_gift:,}") + " USD")
+=======
+print("Outstate: " + str(f"{out_state_gift:,}") + " USD")
+>>>>>>> Stashed changes
 =======
 print("Outstate: " + str(f"{out_state_gift:,}") + " USD")
 >>>>>>> Stashed changes

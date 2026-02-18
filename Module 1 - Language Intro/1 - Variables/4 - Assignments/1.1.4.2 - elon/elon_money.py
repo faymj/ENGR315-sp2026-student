@@ -10,7 +10,10 @@ that time, it appears this investment has not worked out. If Elon has instead bo
 would his investment be worth in 10-year and 20-year bonds? Assume the 10-year bonds pay 3.96%,
 the 20-year bonds pay 4.32%, with each compounding annually. 1.01186675145
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 Note that Elon's capital will be $33B.
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 """
@@ -19,7 +22,14 @@ Note that Elon's capital will be $33B.
 # Check that I have virtual environment and stuff working
 print("program woke up")
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 
+#create function definitions to calculate the interest
+def CalculateInterest(Start, Gainrate, TimeYear):
+    Result = Start * (( 1 + (Gainrate / 100)) ** TimeYear)
+    return Result
 
 #create function definitions to calculate the interest
 def CalculateInterest(Start, Gainrate, TimeYear):
@@ -42,6 +52,9 @@ twenty_year_final = CalculateInterest(33*(10**9), 4.32, 20)
 print("Twenty year payoff is " + str(f"{twenty_year_final:,}" + "USD"))
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes

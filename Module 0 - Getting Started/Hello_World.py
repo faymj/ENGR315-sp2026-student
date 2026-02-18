@@ -10,7 +10,10 @@ print("Hello, World!")
 
 # After your first run, try it out for yourself!
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 print("hey")
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 # YOUR CODE HERE #

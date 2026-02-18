@@ -45,8 +45,13 @@ else:
 
 #Diagonistic tools to assess manually that it is occuring correctly
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 #print(potato1)
 #print(potato2)
+=======
+print(potato1)
+print(potato2)
+>>>>>>> Stashed changes
 =======
 print(potato1)
 print(potato2)
