@@ -41,8 +41,8 @@ for word in words:
 
     # starts with vowel, modify accordingly and put in list
     elif starts_with_vowel(word) == True:
-        #word contains starter vowel, add a "way" to it
-        word += "way"
+        #word contains starter vowel, add a "vay" to it
+        word += "vay"
         pig_latin.append(word)
         continue
 
@@ -60,7 +60,7 @@ for word in words:
         continue
 
 # a new sentence in which you will re-assemble each of the modified words
-new_sentence = "" #not sure if this is actually needed?
+new_sentence = "" 
 
 # re-assemble list of words into string
 for w in pig_latin:
