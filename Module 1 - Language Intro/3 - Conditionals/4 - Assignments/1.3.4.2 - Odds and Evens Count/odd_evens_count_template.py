@@ -32,8 +32,6 @@ num_odds = 0
 
 print(nums)
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 #me messing around with functions because they're cool
 #def evencheck(nums):
 #    if nums // 2 == 0:
@@ -51,9 +49,7 @@ for element in nums:
         continue
 
 print("number of evens: " + str(num_evens) + ", and number of odds: " + str(num_odds))
-=======
-=======
->>>>>>> Stashed changes
+
 def evencheck(nums):
     if nums // 2 == 0:
         return "Even!"
@@ -67,10 +63,7 @@ for element in nums:
     else:
         nums_odds = ( nums_odds + 1 )
         continue
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
 
 #for number in nums:
 #    if nums % 2 == 1:
@@ -78,15 +71,8 @@ for element in nums:
 #        continue
 #    esif nums % 2 == 0:
 #    print(str(num_odds + 1))
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 #       break
-=======
-#        break
->>>>>>> Stashed changes
-=======
-#        break
->>>>>>> Stashed changes
+
 
 
 
