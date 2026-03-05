@@ -14,13 +14,35 @@ Step 1: Declare and initialize all the values for the Gauss-Legendre algorithm
 """
 
 # modify these lines to correct set the variable values
-a = 1
-b = 1/(2^0.5)
-t = None
-p = None
+
+#Set this to prepare the arrays and the number of iterations-1 to be conducted
+pi_iterations = 11
+
+#prep arrays 1
+a = [1]
+b = [1]
+p = [1]
+t = [1]
+
+#expand arrays
+for i in range(0, pi_iterations):
+    a.append(1)
+    b.append(1)
+    p.append(1)
+    t.append(1)
+
+a[0] = 1
+b[0] = 1 / ( 2 ** 0.5 )
+p[0] = 1
+t[0] = 1 / 4
+
+print(a)
+print(b)
+print(p)
+print(t)
 
 # perform 10 iterations of this loop
-for i in range(1, 10):
+for i in range(1, pi_iterations):
     """
     Step 2: Update each variable based upon the algorithm. Take care to ensure
     the order of operations and dependencies among calculations is respected. You
@@ -28,16 +50,30 @@ for i in range(1, 10):
     """
 
     ### YOUR CODE HERE ###
+    print("RUNNING ITERATION", i)
+    a[i] = ( a[i-1] +b[i-1] ) / 2
+    print(a)
+    b[i] = ( a[i-1] * b[i-1] ) ** 0.5
+    print(b)
+    p[i] = 2 * p[i-1]
+    print(p)
+    t[i] = t[i-1] - p[i-1] * ( ( a[i] - a[i-1] ) ** 2 )
+    print(t)
+ # the key detail here is that this doesn't iterate properly if you do [i+1] and [i],
+ # because it doesn't properly refer to earlier numbers.
+ # theres probably a way around that by pushing the iteration system down by one, but whatever.
 
     # print out the current loop iteration. This is present to have something in the loop.
-    print("Loop Iteration: ", i)
+    print("FINSIHED ITERATION ", i)
+    looped_hell = ( ( ( a[i] + b[i] ) ** 2) / ( 4 * t[i] ) )
+    print("result: " + str(looped_hell) )
 
 """
-Step 3: After iterating 10 times, calculate the final value for PI
+Step 3: After iterating pi iteration times, calculate the final value for PI
 """
 
 # modify this line below to estimate PI
-pi_estimate = None
+pi_estimate = looped_hell
 
 print("Final estimate for PI: ", pi_estimate)
 print("Error on estimate: ", abs(pi_estimate - math.pi))

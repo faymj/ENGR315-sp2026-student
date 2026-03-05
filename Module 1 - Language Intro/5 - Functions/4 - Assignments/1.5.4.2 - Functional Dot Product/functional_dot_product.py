@@ -36,7 +36,18 @@ vector_b = generate_random_int_list(fixed_length, maximum_value)
 """
 Step 2: Call your custom dot_product function
 """
-result = dot_product(vector_a,vector_b)
+def dot_product(vector_a,vector_b,fixed_length):
+    dot_sequence = 0
+    for count in range(0,fixed_length):
+        dot_sequence = (vector_a[count] * vector_b[count]) + dot_sequence
+        print(dot_sequence)
+        count = count+1
+    return(dot_sequence)
+
+
+
+result = dot_product(vector_a,vector_b,fixed_length)
+
 
 """
 Step 3: Check your calculation against numpy

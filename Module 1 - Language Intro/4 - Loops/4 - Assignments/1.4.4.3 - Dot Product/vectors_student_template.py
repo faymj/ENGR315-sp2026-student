@@ -31,11 +31,14 @@ dot_product = 0
 count = 1
 dot_sequence = 0
 
-#create code ambomination
-for count in range(0,max_length-1):
+#create code ambomination 
+#in retrospect the thing I made for PI is so so so much worse, this ones fine
+for count in range(0,fixed_length):
     dot_sequence = (vector_a[count] * vector_b[count]) + dot_sequence
+    print(dot_sequence)
     count = count+1
 
+dot_product = dot_sequence
  
 
 
