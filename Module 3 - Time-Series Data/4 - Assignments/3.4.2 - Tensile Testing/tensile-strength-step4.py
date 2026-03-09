@@ -109,12 +109,18 @@ def calculate_elastic_modulus(strain, stress):
         slope: the slope for the linear region of the strain/stress data
         intercept: y-intercept for linear region best fit of strain/stress data
     """
-
+    count = 0
     # dummy variables the function should over write
-    
-    linear_index = stress.index( min(stress > ultimate_tensile_strength * 0.4 ))
+    for number in stress:
+        count = count + 1
+        if number > ultimate_tensile_strength * 0.4:
+            linear_index = count -1
+            print("Found the value just about 40% where stress is " + str(number) + " at data instance " + str(count))
+            break
+   
+
     slope = ( stress[linear_index] - stress[0] ) / ( strain[linear_index] - strain[0] )
-    intercept = None
+    intercept = stress[linear_index] - slope * linear_index
 
     ### YOUR SOLUTION FROM STEP 3 TEMPLATE HERE ###
 
