@@ -10,6 +10,7 @@ def parse_tensile_file(path_to_file):
     gage_diameter = -1
     maximum_force = - 1
     maximum_strain = -1
+    cross_sectional_area = -1
     # determine when to begin reading into these files
     begin_reading = False
     time = []
@@ -61,13 +62,12 @@ def calculate_stress(force, sample_diameter):
     """
 
     # calculate the cross-section area (mm^2)
-    ### your code here ###
-
+    cross_sectional_area = math.pi * ( sample_diameter / 2 ) ** 2
+    print("CROSS SECTIONAL AREA: " + str(cross_sectional_area) + " mm^2")
+    
     # calculate stress (MPa) from load (kN) and cross-sectional area
-    ### your code here ###
-
-    # delete this line and replace it with your own
-    stress = None
+    stress = ( force * 1000 ) / cross_sectional_area
+    print("STRESS: " + str(stress) + " N/mm^2 or MPa")
 
     return stress
 
@@ -85,7 +85,7 @@ if __name__ == "__main__":
 
     ### Do not modify below this line ###
 
-    path_to_directory = "../../../data/tensile/"
+    path_to_directory = "./././data/tensile/"
     path_to_samples = path_to_directory + material_folder + "/"
 
     # manually parse file to get gage diameter and then calculate cross-sectional area

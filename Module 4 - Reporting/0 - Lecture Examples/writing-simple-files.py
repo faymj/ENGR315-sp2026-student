@@ -36,7 +36,7 @@ if __name__ == "__main__":
     hello_world_file = open("hello_world.txt", 'w')
 
     # use the write method from the handle to write to the file
-    string_to_be_written = "Hello world!"
+    string_to_be_written = " world!" 
 
     # given a string, write it out to the file
     hello_world_file.write(string_to_be_written)
@@ -61,7 +61,7 @@ if __name__ == "__main__":
     my_csv.write(header_string)
 
     # fill the remainder of the file with random x,y,z values for several lines
-    num_lines_to_write = random.randint(5,10)
+    num_lines_to_write = random.randint(0,2)
 
     # for each line, generate random ints and write to file
     for idx in range(0,num_lines_to_write):

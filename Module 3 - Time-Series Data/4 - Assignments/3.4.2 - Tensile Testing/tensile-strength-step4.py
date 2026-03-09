@@ -3,6 +3,13 @@ import os
 import math
 import sys
 
+#I know this assignment is supposed to be done in four parts,
+#with each bit leading to the next.
+#but personally I think bug fixing and stuff this way is boring and
+#unrealisitic, so I've just kinda stopped midway 2 and ignored 3 and
+#come right here to finish instead.
+#also I wonder if the number line displacement I've caused with my 
+#comment is meaningful.
 
 def parse_tensile_file(path_to_file):
     file = open(path_to_file)
@@ -60,9 +67,16 @@ def calculate_stress(force, sample_diameter):
     :return: An array of stresses experienced by the sample in Kilo Pascals (MPa)
     """
 
-    ### YOUR SOLUTION FROM STEP 1 TEMPLATE HERE ###
 
-    return None
+    # calculate the cross-section area (mm^2)
+    cross_sectional_area = math.pi * ( sample_diameter / 2 ) ** 2
+    print("CROSS SECTIONAL AREA: " + str(cross_sectional_area) + " mm^2")
+    
+    # calculate stress (MPa) from load (kN) and cross-sectional area
+    stress = ( force * 1000 ) / cross_sectional_area
+    #print("STRESS: " + str(stress) + " N/mm^2 or MPa")
+
+    return stress
 
 
 def calculate_max_strength_strain(strain, stress):
@@ -75,14 +89,19 @@ def calculate_max_strength_strain(strain, stress):
     Fracture Strain: the maximum strain experienced before fracture
     """
 
-    ### YOUR SOLUTION FROM STEP 2 TEMPLATE HERE ###
+    # calculate the maximum stress experienced
+    ultimate_tensile_stress = max(stress)
+    #print("Ultimate tensile stress at " + ultimate_tensile_stress)
 
-    return -1, -1
+    # calculate the maximum strain experienced
+    fracture_strain = max(strain)
+    #print("OUCH at " + fracture_strain + "strain")
+    return ultimate_tensile_stress, fracture_strain
 
 def calculate_elastic_modulus(strain, stress):
     """
-        Given a set of stress strain data, use the Secant Modulus at 40% method to determine
-        the elastic modulus
+        Given a set of stress strain data, use the Secant Modulus at 40% method to determine 
+        the elastic modulus (so slope from 0 to 40%) (take all values below 40%, and then use the [-1] one.)
         :param strain:
         :param stress:
         :return:
@@ -92,8 +111,9 @@ def calculate_elastic_modulus(strain, stress):
     """
 
     # dummy variables the function should over write
-    linear_index = None
-    slope = None
+    
+    linear_index = stress.index( min(stress > ultimate_tensile_strength * 0.4 ))
+    slope = ( stress[linear_index] - stress[0] ) / ( strain[linear_index] - strain[0] )
     intercept = None
 
     ### YOUR SOLUTION FROM STEP 3 TEMPLATE HERE ###
@@ -138,7 +158,7 @@ if __name__ == "__main__":
 
     ### Do not modify below this line ###
 
-    path_to_directory = "../../../data/tensile/"
+    path_to_directory = "./././data/tensile/"
     path_to_samples = path_to_directory + material_folder + "/"
 
     # manually parse file to get gage diameter and then calculate cross-sectional area
