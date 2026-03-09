@@ -122,8 +122,6 @@ def calculate_elastic_modulus(strain, stress):
     slope = ( stress[linear_index] - stress[0] ) / ( strain[linear_index] - strain[0] )
     intercept = stress[linear_index] - slope * linear_index
 
-    ### YOUR SOLUTION FROM STEP 3 TEMPLATE HERE ###
-
     return linear_index, slope, intercept
 
 def calculate_percent_offset(slope, strain, stress):
@@ -141,14 +139,15 @@ def calculate_percent_offset(slope, strain, stress):
     offset = 0.002
 
     # calculate the offset line: y=m(x-0.002) + 0
-    offset_line = None
+    offset_line = slope * strain - offset
+    print(offset_line)
 
     # measure distance from all points on graph to this line. Consider using the
     # abs() method to ensure values are positive
-    distance = None
+    distance = abs(stress - offset_line)
 
     # use argmin to find the index where the distance is minimal
-    intercept_index = -1
+    intercept_index = distance.index()
 
     return offset_line, intercept_index
 
