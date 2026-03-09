@@ -109,12 +109,13 @@ def calculate_elastic_modulus(strain, stress):
         slope: the slope for the linear region of the strain/stress data
         intercept: y-intercept for linear region best fit of strain/stress data
     """
+
     count = 0
     # dummy variables the function should over write
     for number in stress:
         count = count + 1
         if number > ultimate_tensile_strength * 0.4:
-            linear_index = count -1
+            linear_index = count - 1
             print("Found the value just about 40% where stress is " + str(number) + " at data instance " + str(count))
             break
    
@@ -139,15 +140,14 @@ def calculate_percent_offset(slope, strain, stress):
     offset = 0.002
 
     # calculate the offset line: y=m(x-0.002) + 0
-    offset_line = slope * strain - offset
-    print(offset_line)
+    offset_line = slope * ( strain - offset ) 
 
     # measure distance from all points on graph to this line. Consider using the
     # abs() method to ensure values are positive
     distance = abs(stress - offset_line)
 
     # use argmin to find the index where the distance is minimal
-    intercept_index = distance.index()
+    intercept_index = np.argmin(distance)
 
     return offset_line, intercept_index
 
@@ -226,6 +226,10 @@ if __name__ == "__main__":
     linear_strain = strain[0:linear_index]
     linear_stress = stress[0:linear_index]
 
+    print("loading the problem graph")
+    print(linear_strain)
+    print(linear_stress)
+
     plt.scatter(linear_strain, linear_stress, label="Stress - Strain")
     plt.xlabel('Strain (mm/mm)')
     plt.ylabel('Stress (MPa)')
@@ -261,7 +265,7 @@ if __name__ == "__main__":
     plt.plot(strain[intercept_index], stress[intercept_index], marker='v', label="Yield Strength")
 
     # since this will go on forever, constrain the axis
-    plt.xlim([-.001, max(strain)])
+    plt.xlim([-.001, max(strain) * 0.1])
     plt.ylim([0, 1.1 * max(stress)])
     plt.legend()
     plt.show()
