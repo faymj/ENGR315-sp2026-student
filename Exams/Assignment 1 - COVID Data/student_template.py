@@ -24,13 +24,18 @@ Rockingham County (County Code: 51165)
 Harrisonburg (County Code: 51660)
 
 """
-
+#County codes of relevance
+#replace these with anything from the offical list, seems to have mimimal impact on Q3
 Location1 = 51660
 Location2 = 51165
 
+#Prepped variables for calculations
 Location1_stow = ""
 Location2_stow = ""
 
+#putting some space between noisy terminal text and the much cooler data responses.
+
+print("________________________________________________________________________________________________")
 #Edits to the praser in order to make it more useful.
 def parse_nyt_data_for_location(Location, file_path='',):
     """
@@ -99,12 +104,9 @@ def parse_nyt_data_for_location(Location, file_path='',):
             donothing = 0        
             #print(entry + "test")
 
-
-
-
     line = (data[0])
     (date, county, state, fips, cases, deaths) = line
-    print("finished creating a list for " + str(county))
+    print("Finished creating a list for " + str(county) + ".")
     return data
 
 
@@ -133,7 +135,6 @@ def getdatelist(data):
     #now to actually use these
     return all_dates
 
-
 #this is basically just a matter of grabbing the first value that shows up, because the are no entries for 0 case senarios
 def first_question(data):
 
@@ -152,7 +153,7 @@ def first_question(data):
     (date, county, state, fips, cases, deaths) = line
 
     #make statement
-    print("First COVID case for " + str(county) + " in " + str(state) + " occured on " + str(date))
+    print("First COVID case for " + str(county) + " in " + str(state) + " occured on " + str(date) + ".")
 
     #wow ok so yeah turns out sorting out useful data makes this whole thing way way easier huh
     return
@@ -193,6 +194,7 @@ def second_question(data):
         # Current hypothesis: misreported values are retracted at a later date
         #The biggest negative is -5, so I'm going to assume someone thought there was a group that was sick, but they weren't in such situ.
 
+
         holdthis = all_cases[count + 1] - all_cases[count]
         difference_of_cases.append(holdthis)
         count = count + 1
@@ -205,10 +207,10 @@ def second_question(data):
     #use the custom def to get all the dates for this county
     all_dates = getdatelist(data)
     #find the date by indexing the biggest -1 one, since the difference calculation will result in a forward shift of +1.
-    biggest_difference_of_cases_date = all_dates[difference_of_cases.index(biggest_difference_of_cases-1)]
+    biggest_difference_of_cases_date = all_dates[(difference_of_cases.index(biggest_difference_of_cases)) - 1]
         
 
-    print("Biggest increase of COVID cases for " + str(county) + ", " + str(state) + " is " + str(biggest_difference_of_cases) + " on " + str(biggest_difference_of_cases_date))
+    print("Biggest increase of COVID cases for " + str(county) + ", " + str(state) + " is " + str(biggest_difference_of_cases) + " on " + str(biggest_difference_of_cases_date) + ".")
     
     #actually return the value, for potential later use
     return biggest_difference_of_cases
@@ -272,17 +274,54 @@ def third_question(data):
 
 
     # your code here
-    return
 
-count = 0
+    #similar stuff to above (probably a sign I should be making a def for this too... wait...)
+    lines = data
+    count = 0
+    all_cases = list()
 
+    #set a limit to counting
+    while count < len(lines):
+
+        #unpack
+        line = (lines[count])
+        (date, county, state, fips, cases, deaths) = line
+        count = count + 1
+        all_cases.append(cases)
+
+    #begin loop two = checking for our maximum increase where we assume that its probably not the beginning
+    count = 0
+    holdthis = list()
+    difference_of_average_cases = list()
+
+    #subtracting six since I can't have it go over bound, and it needs to cover the starter number plus six above it.
+    while count < len(all_cases) - 6:
+       #substracting the number above the base value. six jumps bring 0 to 6, which covers a range of 7, but it still feels wrong.
+       #potentially am, might need a checkback here.
+       #basically we're reading the day which is followed by another six days
+        holdthis = all_cases[count + 6] - all_cases[count]
+        difference_of_average_cases.append(holdthis)
+        count = count + 1
+    #print(difference_of_average_cases)
+    biggest_average_of_cases = (max(difference_of_average_cases))
+    #print(biggest_average_of_cases)
+
+    all_dates = getdatelist(data)
+
+    begin_the_week_of_woe = all_dates[(difference_of_average_cases.index(biggest_average_of_cases)) - 6]
+
+    print("The worst week of COVID for humans starts at " + str(begin_the_week_of_woe) + " with a total increase of " + str(biggest_average_of_cases) + " cases over that week.")
+    if begin_the_week_of_woe == "2022-01-01" or "2022-01-02" or "2022-01-03":
+        print("(Lo and behold, the cost of new years celebrations...)")
+    return 
 
 #if in the future, more loops could improve versality of this section e.g for the stow reading
 if __name__ == "__main__":
+    #prepare stow locations
     Location1_stow = parse_nyt_data_for_location(Location1,'us-counties.csv')
     Location2_stow = parse_nyt_data_for_location(Location2,'us-counties.csv')
 
-
+    print("")
     #This section is noisy and I don't think it helps with answering things (unless one can read really fast),
     # so I'm silencing it.
     """
@@ -293,19 +332,19 @@ if __name__ == "__main__":
         print(str(count) + ": " + str(data))
     """
 
-
     # write code to address the following question: Use print() to display your responses.
     # When was the first positive COVID case in Rockingham County?
     # When was the first positive COVID case in Harrisonburg?
     first_question(Location1_stow)
     first_question(Location2_stow)
-
+    print()
 
     # write code to address the following question: Use print() to display your responses.
     # What day was the greatest number of new daily cases recorded in Harrisonburg?
     # What day was the greatest number of new daily cases recorded in Rockingham County?
     second_question(Location1_stow)
     second_question(Location2_stow)
+    print()
 
     # write code to address the following question: Use print() to display your responses.
     # What was the worst seven day period in Harrisonburg for new COVID cases (in terms of absolute number of cases)?
@@ -313,4 +352,5 @@ if __name__ == "__main__":
     third_question(Location1_stow)
     third_question(Location2_stow)
 
-
+#I will admit I have not reread all the comments before submission: I am very tired at this point.
+#This was a very interesting excercise, and the applicability is quite neat.
