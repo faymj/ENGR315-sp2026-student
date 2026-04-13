@@ -166,30 +166,22 @@ def second_question(data):
     # What day was the greatest number of new daily cases recorded in Rockingham County?
     :return:
     """
-
     # your code here
-
     #grab stow for local variables
     lines = data
-
     #setflag = 0
     count = 0
-
     #prep the list
     all_cases = list()
-
     #set a limit to counting (just in case something weird happens otherwise?)
     while count < len(lines):
-
         #unpack
         line = (lines[count])
         (date, county, state, fips, cases, deaths) = line
         count = count + 1
         all_cases.append(cases)
-    
     #diagonistic for checking that our numbers are right
     #print(all_cases)
-
     #begin loop two = checking for our maximum increase where we assume that its probably not the beginning
     count = 0
     difference_of_cases = list()
@@ -231,7 +223,54 @@ def third_question(data):
     # This is the 7-day period where the number of new cases was maximal. #good point to specify.
     :return:
     """
+ # your code here
+    #grab stow for local variables
+    lines = data
+    #setflag = 0
+    count = 0
+    #prep the list
+    all_cases = list()
+    #set a limit to counting (just in case something weird happens otherwise?)
+    while count < len(lines):
+        #unpack
+        line = (lines[count])
+        (date, county, state, fips, cases, deaths) = line
+        count = count + 1
+        all_cases.append(cases)
+    #diagonistic for checking that our numbers are right
+    #print(all_cases)
+    #begin loop two = checking for our maximum increase on average where we assume that its probably not the beginning
+    count = 0
+    difference_of_cases = list()
+    while count < len(all_cases) - 1:
+        #finding the difference by item 2 - item 1 = diff. NOTE: this does not consider the change from nothing to inital.
+        # so TECHNICALLY one can have the greatest increase on day one, and this program won't find it.
+        #but then its not really definitionally pandemic... so...
+        #fun fact: there ARE negative differences, which is weird. the cases values are cumulative, so theoretically it should be impossible
+        # Current hypothesis: misreported values are retracted at a later date
+        #The biggest negative is -5, so I'm going to assume someone thought there was a group that was sick, but they weren't in such situ.
+
+        holdthis = all_cases[count + 1] - all_cases[count]
+        difference_of_cases.append(holdthis)
+        count = count + 1
+        
+
+    #these variable names are getting a bit excessive
+    #take the biggest difference, and find its position, and use that to find the
+    #  date
+    biggest_difference_of_cases = max(difference_of_cases)
+    #use the custom def to get all the dates for this county
+    all_dates = getdatelist(data)
+    #find the date by indexing the biggest -1 one, since the difference calculation will result in a forward shift of +1.
+    biggest_difference_of_cases_date = all_dates[difference_of_cases.index(biggest_difference_of_cases-1)]
+        
+
+    print("Biggest increase of COVID cases for " + str(county) + ", " + str(state) + " is " + str(biggest_difference_of_cases) + " on " + str(biggest_difference_of_cases_date))
     
+    #actually return the value, for potential later use
+    return biggest_difference_of_cases
+
+
     # your code here
     return
 

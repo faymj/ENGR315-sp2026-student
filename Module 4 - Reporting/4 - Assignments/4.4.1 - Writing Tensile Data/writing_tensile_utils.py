@@ -149,3 +149,5 @@ class MaterialSample:
         self.fracture_strain = -1
         self.elastic_modulus = -1
         self.yield_strength = -1
+
+print("done")

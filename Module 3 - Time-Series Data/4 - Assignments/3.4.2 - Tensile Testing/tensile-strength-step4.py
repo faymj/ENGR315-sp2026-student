@@ -11,11 +11,12 @@ import sys
 #also I wonder if the number line displacement I've caused with my 
 #comment is meaningful.
 
+
 def parse_tensile_file(path_to_file):
     file = open(path_to_file)
     # required meta-data
     gage_diameter = -1
-    maximum_force = - 1
+    maximum_force = -1
     maximum_strain = -1
     # determine when to begin reading into these files
     begin_reading = False
@@ -78,6 +79,7 @@ def calculate_stress(force, sample_diameter):
 
     return stress
 
+ultimate_tensile_strength =  0
 
 def calculate_max_strength_strain(strain, stress):
     """
@@ -98,6 +100,7 @@ def calculate_max_strength_strain(strain, stress):
     #print("OUCH at " + fracture_strain + "strain")
     return ultimate_tensile_stress, fracture_strain
 
+
 def calculate_elastic_modulus(strain, stress):
     """
         Given a set of stress strain data, use the Secant Modulus at 40% method to determine 
@@ -110,18 +113,24 @@ def calculate_elastic_modulus(strain, stress):
         intercept: y-intercept for linear region best fit of strain/stress data
     """
 
-    count = 0
+    count = 0 
     # dummy variables the function should over write
     for number in stress:
-        count = count + 1
-        if number > ultimate_tensile_strength * 0.4:
-            linear_index = count - 1
+        if number > max(stress) * 0.4:
+            linear_index = count
             print("Found the value just about 40% where stress is " + str(number) + " at data instance " + str(count))
             break
+        elif number < ultimate_tensile_strength * 0.4:
+            count = count + 1
    
+    
+    print("The weird numbers you requested:")
 
-    slope = ( stress[linear_index] - stress[0] ) / ( strain[linear_index] - strain[0] )
-    intercept = stress[linear_index] - slope * linear_index
+    slope = ( stress[linear_index] - stress[0] ) / ( strain[linear_index] - strain[0] ) # - (204810.1320515739 - 204483.60347511276)
+    intercept = stress[linear_index] - slope * strain[linear_index]
+
+    print("Modulus is: " + str(slope))
+    print("Intercept is: " + str(intercept))
 
     return linear_index, slope, intercept
 
@@ -151,6 +160,8 @@ def calculate_percent_offset(slope, strain, stress):
 
     return offset_line, intercept_index
 
+
+
 if __name__ == "__main__":
     import matplotlib.pyplot as plt
 
@@ -179,14 +190,14 @@ if __name__ == "__main__":
     if stress is None:
         print("Error! No stress returned. Did you fill in the calculate_stress() method?")
         sys.exit(-1)
-
+    """
     # use scatter plot so we don't assume a line (yet)
     plt.scatter(strain, stress, label="Stress - Strain")
     plt.xlabel('Strain (mm/mm)')
     plt.ylabel('Stress (MPa)')
     plt.title('Stress-Strain Curve for Sample ' + sample_name)
     plt.show()
-
+    """
     # Step #2: Calculate basic parameters such as the ultimate tensile strength
     # and fracture strain
 
@@ -199,7 +210,7 @@ if __name__ == "__main__":
 
     print("Ultimate Tensile Stress is ", ultimate_tensile_strength, "MPa")
     print("Fracture Strain is ", 100 * fracture_strain, " percent")
-
+    
     # Step #3: Use the Secant Modulus at 40% of Peak Strain
     # to determine elastic modulus
 
@@ -222,13 +233,21 @@ if __name__ == "__main__":
     plt.legend()
     plt.show()
 
+    #print("Stress:")
+    #print(stress)
+    #print("Strain:")
+    #print(strain)
     # now plot the linear region for the best fit line
-    linear_strain = strain[0:linear_index]
-    linear_stress = stress[0:linear_index]
+    linear_strain = abs(strain[0:linear_index])
+    linear_stress = abs(stress[0:linear_index])
 
+
+    #stuck with this one
+    #I really don't like this graph
+    #but we made up our differences after I got it to work.
     print("loading the problem graph")
-    print(linear_strain)
-    print(linear_stress)
+    ##print(linear_stress)
+    ##print(linear_strain)
 
     plt.scatter(linear_strain, linear_stress, label="Stress - Strain")
     plt.xlabel('Strain (mm/mm)')
@@ -270,6 +289,7 @@ if __name__ == "__main__":
     plt.legend()
     plt.show()
 
+    #print("The computer doesn't seem to know what this is? Ultstrength is:" + str(ultimate_tensile_strength))
     print("Done!")
 
 
