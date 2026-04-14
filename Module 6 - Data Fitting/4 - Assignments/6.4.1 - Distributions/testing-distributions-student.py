@@ -92,13 +92,13 @@ Step #8: Generate x and y from the Exponential Fit
 """
 
 # Hint: Remember the functions described in the examples, choose an appropriate range for x
-exp_x = np.linspace(start=0, stop=50, num=num_samples)
-exp_y = expon.pdf(x, scale=fit_beta)
+exp_x = np.linspace(start=0, stop=50, num=1000)
+exp_y = expon.pdf(exp_x, scale=fit_beta)
 
 """
 Step #9: Generate a plot for the Fitted Exponential Distribution, include a title and axis labels
 """
-plt.plot(x, y, label='Fitted Exponential')
+plt.plot(exp_x, exp_y, label='Fitted Exponential')
 plt.title('Fitted Exponential for ' + str(num_samples) + ' Sampled Points')
 plt.xlabel('X')
 plt.ylabel('Probability of X')
