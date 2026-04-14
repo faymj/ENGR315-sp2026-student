@@ -46,7 +46,7 @@ y = norm.pdf(x, loc=sample_mean, scale=sample_std_dev)
 """
 Step #4: Generate a plot for the Fitted Normal Distribution, include a title and axis labels
 """
-plt.plot(x, y, label='Fitted Normal Normal')
+plt.plot(x, y, label='Fitted Normal')
 plt.xlabel('X')
 plt.ylabel('Probability of X')
 plt.title('Fitted Exponential for ' + str(num_samples) + ' Sampled Points')
