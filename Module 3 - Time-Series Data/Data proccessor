@@ -1,2 +1,57 @@
 print("hello world")
 print("ok cool so that works")
+unnested = (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17)
+nest = []
+print(str(nest))
+
+
+done = 0
+tempnest = []
+count = 1
+count2 = 0
+
+#testing packing nested lists
+while not done:
+    if count % 3 == 0:
+        tempnest.append(unnested[count-1])
+        nest.append(tempnest)
+        count2 = count2 + 1
+        count = count + 1
+        tempnest = []
+    else:
+        tempnest.append(unnested[count-1])
+        count = count + 1
+    if count == len(unnested):
+        done = 1
+done = 0
+
+
+#unpacking a nested list
+count = 0
+count2= 0
+
+print(nest)
+print(len(unnested))
+print(count)
+
+
+#this doesn't work yet, I need to get it to iterate through all the lowest nest
+# and then iterate through the upper lists
+# and I want it to work for arbetrary quantities of numbers (preferably up to infinity, time willing).
+while not done:
+    
+    if count == len(unnested):
+        print(count)
+        done = 1
+    if count2 // len(unnested):
+        print(count)
+        done = 1
+    if count % 3 == 0:
+        print(nest[count2])
+        print(count)
+        count = count + 1
+        count2 = count2 + 1
+    else:
+        print(nest[count])
+        print(count)
+        count = count + 1

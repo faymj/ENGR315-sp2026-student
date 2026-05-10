@@ -1,6 +1,11 @@
 import numpy as np
 from ekg_testbench import EKGTestBench
 
+
+Time = []
+MLII = []
+V5 = []
+
 def detect_heartbeats(filepath):
     """
     Perform analysis to detect location of heartbeats
@@ -8,17 +13,26 @@ def detect_heartbeats(filepath):
     :return: signal: a signal that will be plotted
     beats: the indices of detected heartbeats
     """
-    if filepath == '':
+    if filepath == '././data/ekg/mitdb_100.csv':
         return list()
+
+#Use examples from the last assignment to check that we are loading the file right
 
     # import the CSV file using numpy
     path = filepath
-
+    print(path)
     # load data in matrix from CSV file; skip first two rows
-    ## your code here
+    for number in len(path):
+        (addtottime, addtoMLII, addtoV5) = path(number).rstrip().split(",")
 
     # save each vector as own variable
     ## your code here
+        Time.append(addtottime)
+        addtottime = ""
+        MLII.append(addtoMLII)
+        addtoMLII = ""
+        V5.append(addtoV5)
+        addtoV5 = ""
 
     # identify one column to process. Call that column signal
 

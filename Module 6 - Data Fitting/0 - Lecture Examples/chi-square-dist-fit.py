@@ -13,6 +13,7 @@ Replicating work from here: http://www.stat.yale.edu/Courses/1997-98/101/chigf.h
 # load set of observation data
 observations = np.loadtxt('yale-randoms.txt')
 
+
 # bin the examples
 bins = np.linspace(-2, 2, 9)  # Create 10 bins
 

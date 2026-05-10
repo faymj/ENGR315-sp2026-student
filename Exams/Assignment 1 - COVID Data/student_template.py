@@ -17,7 +17,7 @@ Cool fun fact: entries show up in the data as relevant, so places no yet afflict
 do not have any entries until they have a case to report; I just like that this saves
 on file size. This also means that case 1 is the first entry.
 
-I have probably misused the ways which <triple"> are supposed to be used.
+I have probably misused the ways which tuple are supposed to be used.
 
 Reminders for me
 Rockingham County (County Code: 51165)
@@ -103,7 +103,7 @@ def parse_nyt_data_for_location(Location, file_path='',):
         else:
             donothing = 0        
             #print(entry + "test")
-
+ 
     line = (data[0])
     (date, county, state, fips, cases, deaths) = line
     print("Finished creating a list for " + str(county) + ".")
